@@ -1,7 +1,10 @@
 # zegamiutils
 Utility methods for Zegami
 
-To use  
+### Requirements
+requests (pip install requests)
+
+### Example  
 ```
 from zegami import zegamiutils
 #get client giving username, password and project id
