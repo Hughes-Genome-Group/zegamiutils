@@ -3,6 +3,7 @@ import io
 import os
 import re
 import sys
+import json
 
 
 
@@ -173,10 +174,52 @@ def create_new_set(collection_id,upload_file,name):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", help="specify action:- create_collection")
+    parser.add_argument("config", help="specify action:- create_collection")
     args = parser.parse_args()
-    print (args.action)
-          
+    params=json.loads(open(args.config).read())
+
+    
+    client =  get_client(params["username"],params["password"],params["project"])
+    description = params.get("collection_description","")
+    
+    if params["action"] == "create_and_upload":
+        url,collection_id = create_collection(params["collection_name"],params["tsvfile"],params["imagecol"],client,description)
+        print("created collection - id:{}".format(collection_id))
+        success,num_uploaded = upload_images(params["imagedir"], collection_id, client)
+        if success:
+            print("successfully created collection and uploaded all images")
+        else:
+            print ("only uploaded {} images".format(num_uploaded))
+        print("url:{}".format(url))
+        print("collection id:{}".format(collection_id))
+        
+    if params["action"] == "create":
+        url,collection_id = create_collection(params["collection_name"],params["tsvfile"],params["imagecol"],client,description)
+        print("Sucessfully created collection")
+        print("url:{}".format(url))
+        print("collection id:{}".format(collection_id))
+        
+    if params["action"] == "upload":
+        from_count=params.get("from_count",0)
+        success,num_uploaded = upload_images(params["imagedir"], params["collection_id"], client,from_count)
+        if success:
+            print("successfully created collection and uploaded all images")
+        else:
+            print ("only uploaded {} images".format(num_uploaded))
+            
+    if params["action"] == "delete":
+        from_count=params.get("from_count",0)
+        success = delete_colloection(params["collection_id"], client)
+        if success:
+            print("successfully deleted collection {}".format(params["collection_id"]))
+        else:
+            print("unable to delete collection {}".format(params["collection_id"]))
+            
+    if params["action"]== "update":
+        update_collection(params["collection_id"],params["tsvfile"],client)
+        print("sucessfully updated collection")
+      
+             
     
 def delete_collection(collection_id,client):
     resp = client.delete_collection(collection_id)
@@ -188,6 +231,7 @@ def get_tags(collection_id,client):
 
 
 if __name__ == "__main__":
-    main
+    main()
 
 
+w

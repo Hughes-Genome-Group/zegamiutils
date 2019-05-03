@@ -1,0 +1,11 @@
+{
+	"username":"me@gmail.com",
+	"password":"password
+	"project":"ztrbzvw2",
+	"action":"create_and_upload",
+	"imagedir":"c:\\data\\zegami_test_data\\images",
+	"tsvfile":"c:\\data\\zegami_test_data\\data.tsv",
+	"imagecol":"Image Name",
+	"collection_name":"Test"
+	
+}
