@@ -32,7 +32,7 @@ The config is a json file (see example_configs)  with the following parameters
 
 * *username* required - your zegami username (usually your email address)
 * *password* required  - your password
-* *project* required - the unique identifier which is the first part of the last section of the a collection url (see above)
+* *project* required - the unique identifier which is the first part of the last section of the collection url (see above)
 * *action* required - can be create_and_upload,create,upload,delete,update 
 * *collection_name* required for create and create_and_upload actions - the name you want to give to the collection
 * *collection_description* optional for create and create_and_upload actions - the description you want to give to the collection
