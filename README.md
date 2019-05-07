@@ -37,7 +37,8 @@ The config is a json file (see example_configs)  with the following parameters:-
 * *collection_name* required for create and create_and_upload actions - the name you want to give to the collection
 * *collection_description* optional for create and create_and_upload actions - the description you want to give to the collection
 * *tsvfile* required for create,create_and_upload and update actions - the tab delimited file (with column headings) that will be used to update/create the collection
-* *imagecol* required for create and create_and_uplaod actions - the heading of the column in the tsv file, which specifies the name of the image that is linked to the row
+* *imagedir* required for create_and_uplaod and upload actions - the path to the directory of the images 
+* *imagecol* required for create and create_and_upload actions - the heading of the column in the tsv file, which specifies the name of the image that is linked to the row
 * *from_count* optional for the update action - the number of the image to start uploading from. This may be required if a previous upload was interrupted. In which case, the count of the last image to be successfully uploaded would have been given in the error message.
 
 
