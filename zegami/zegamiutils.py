@@ -232,6 +232,3 @@ def get_tags(collection_id,client):
 
 if __name__ == "__main__":
     main()
-
-
-w
